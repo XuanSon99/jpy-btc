@@ -85,8 +85,8 @@ export default {
         res.data.data.forEach(i => {
         if(i.symbol.includes("JPY")){
           this.gmo_list.push({
-            token: i.symbol,
-            price: i.last
+            token: i.symbol ,
+            price: Number(i.last) - Number(i.last * 0.05 / 100)
           })
         }
        });
@@ -106,7 +106,7 @@ export default {
         res.data.forEach(i => {
           this.binance_list.push({
             token: i.symbol,
-            price: i.price
+            price: Number(i.price) - Number(i.price * 0.1 / 100)
           })
         })
       }).catch((err) => {
