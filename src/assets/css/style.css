@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+main {
+    padding: 50px;
+}
+
+.v-text-field.v-text-field--enclosed .v-text-field__details {
+    display: none;
+}
+.green-cl{
+    color: #4acd4a;
+}
+.red-cl{
+    color: #cf1313;
+}
