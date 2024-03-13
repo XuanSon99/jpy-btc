@@ -91,7 +91,7 @@ export default {
           if (i.symbol.includes("JPY")) return
           this.gmo_list.push({
             token: i.symbol ,
-            price: Number(i.last) + Number(i.last * 0.1 / 100)
+            price: Number(i.last) + Number(i.last * 0.15 / 100)
           })
         }
        });
