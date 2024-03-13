@@ -87,7 +87,8 @@ export default {
       axios.get('https://api.chootc.com/api/gmo').then((res) => {
         this.gmo_list = []
         res.data.data.forEach(i => {
-        if(i.symbol.includes("JPY") && !i.symbol.includes("LTC")){
+        if (i.symbol.includes("BTC") || i.symbol.includes("ETH") || i.symbol.includes("XRP") || i.symbol.includes("BCH") ){
+          if (i.symbol.includes("JPY")) return
           this.gmo_list.push({
             token: i.symbol ,
             price: Number(i.last) + Number(i.last * 0.1 / 100)
