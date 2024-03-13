@@ -64,11 +64,11 @@ export default {
   mounted() {
     this.getBinance()
     this.getGMO()
-    this.getUsdtRate()
+    // this.getUsdtRate()
     this.interval = setInterval(() => {
       this.getBinance()
       this.getGMO()
-      this.getUsdtRate()
+      // this.getUsdtRate()
     }, 3000);
   },
   methods: {
