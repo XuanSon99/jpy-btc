@@ -2,8 +2,11 @@
   <main>
     <v-container>
       <v-row>
-        <v-col cols="12" md="2">
+        <v-col cols="6" md="2">
           <v-text-field v-model="usdt_rate" label="Rate (USDT/VNĐ)" outlined dense clearable></v-text-field>
+        </v-col>
+        <v-col cols="6" md="2">
+          <v-text-field v-model="live_rate" label="Live rate" readonly outlined dense></v-text-field>
         </v-col>
       </v-row>
       <v-row>
@@ -59,16 +62,17 @@ export default {
       gmo_list: [],
       binance_list: [],
       interval: '',
+      live_rate: 0
     }
   },
   mounted() {
     this.getBinance()
     this.getGMO()
-    // this.getUsdtRate()
+    this.getUsdtRate()
     this.interval = setInterval(() => {
       this.getBinance()
       this.getGMO()
-      // this.getUsdtRate()
+      this.getUsdtRate()
     }, 3000);
   },
   methods: {
@@ -78,7 +82,7 @@ export default {
     },
     getUsdtRate(){
       axios.get('https://api.chootc.com/api/p2p?type=sell&asset=usdt&fiat=vnd&page=1').then((res) => {
-        this.usdt_rate = res.data.data[19].adv.price
+        this.live_rate = res.data.data[19].adv.price
       }).catch((err) => {
         // location.reload();
       })
