@@ -76,6 +76,16 @@ export default {
     }, 3000);
   },
   methods: {
+    array_move(arr, old_index, new_index) {
+      if (new_index >= arr.length) {
+        var k = new_index - arr.length + 1;
+        while (k--) {
+            arr.push(undefined);
+        }
+      }
+      arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
+      return arr;
+    },
     logout() {
       localStorage.removeItem('loged')
       this.$router.push("/login")
@@ -91,7 +101,7 @@ export default {
       axios.get('https://api.chootc.com/api/gmo').then((res) => {
         this.gmo_list = []
         res.data.data.forEach(i => {
-        if (i.symbol.includes("BTC") || i.symbol.includes("ETH") || i.symbol.includes("XRP") || i.symbol.includes("BCH") ){
+        if (i.symbol.includes("BTC") || i.symbol.includes("ETH") || i.symbol.includes("SOL") || i.symbol.includes("XRP") || i.symbol.includes("ADA") || i.symbol.includes("BCH") || i.symbol.includes("DOGE") || i.symbol.includes("LTC") || i.symbol.includes("DOT")){
           if (i.symbol.includes("JPY")) return
           this.gmo_list.push({
             token: i.symbol ,
@@ -99,12 +109,16 @@ export default {
           })
         }
        });
+       this.array_move(this.gmo_list, 8, 2)
+       this.array_move(this.gmo_list, 5, 3)
+       this.array_move(this.gmo_list, 7, 4)
+       this.array_move(this.gmo_list, 8, 5)
       }).catch((err) => {
         // location.reload();
       })
     },
     getBinance() {
-      let symbols = ["BTCUSDT", "ETHUSDT", "BCHUSDT", "XRPUSDT"]
+      let symbols = ["BTCUSDT", "ETHUSDT", "SOLUSDT", "XRPUSDT", "ADAUSDT", "BCHUSDT", "DOGEUSDT", "LTCUSDT", "DOTUSDT"]
       
       axios.get('https://api3.binance.com/api/v3/ticker/price', {
         params: {
