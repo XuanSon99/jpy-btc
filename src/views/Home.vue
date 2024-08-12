@@ -73,7 +73,7 @@ export default {
       this.getBinance()
       this.getGMO()
       this.getUsdtRate()
-    }, 3000);
+    }, 10000);
   },
   methods: {
     array_move(arr, old_index, new_index) {
